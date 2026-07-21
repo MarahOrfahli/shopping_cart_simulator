@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Razer Kraken V4 X Wired Gaming Headset",
+    "type": "headphone",
+    "price": 61.99
+  },
+  {
+    "name": "GTPLAYER Gaming Chair",
+    "type": "office_chair",
+    "price": 85.49
+  },
+  {
+    "name": "Razer Ornata V3 TKL Gaming Keyboard",
+    "type": "keyboard",
+    "price": 119.99
+  },
+  {
+    "name": "Fringe Studio Celestial Dog Stoneware Mug",
+    "type": "coffee_mug",
+    "price": 13.95
+  },
+  {
+    "name": "Smart Watch for Women",
+    "type": "smart_watch",
+    "price": 64.97
+  },
+  {
+    "name": "Swissgear",
+    "type": "backpack",
+    "price": 89.99
+  },
+  {
+    "name": "CMF Buds 2a Wireless Earbuds",
+    "type": "earbuds",
+    "price": 25.99
+  },
+  {
+    "name": "INIU Smallest 20000mAh Power Bank",
+    "type": "power_bank",
+    "price": 26.98
+  }
+]
