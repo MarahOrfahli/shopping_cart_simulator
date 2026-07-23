@@ -1,6 +1,6 @@
 import { useSidebar } from "../../hooks/sidebarContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { isOpened, toggleSidebar } = useSidebar();
@@ -126,21 +126,25 @@ const Sidebar = () => {
                     <button
                       // onClick={onCheckout}
                       // disabled={cart.length === 0}
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Checkout
                     </button>
                   </div>
                   <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                     <p>
-                      or{" "}
+                      or
                       <button
                         type="button"
-                        // onClick={onClose}
-                        className="font-medium text-green-600 hover:text-green-500"
+                        onClick={toggleSidebar}
+                        className="font-medium text-green-900 hover:text-green-800 cursor-pointer"
                       >
-                        Continue Shopping
-                        <span aria-hidden="true"> &rarr;</span>
+                        <span className="mr-1 text-xl">Continue Shopping</span>
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          size="x"
+                          color="green"
+                        />
                       </button>
                     </p>
                   </div>

@@ -23,7 +23,7 @@ const Navbar = () => {
               onClick={toggleSidebar}
               className="relative text-gray-500 hover:text-brand-600 transition-colors p-1 cursor-pointer"
             >
-              <FontAwesomeIcon icon={faShoppingCart} size="2x" color="green" />
+              <FontAwesomeIcon icon={faShoppingCart} size="xl" color="green" />
               {/* <!-- Badge --> */}
               <span
                 id="cartBadge"

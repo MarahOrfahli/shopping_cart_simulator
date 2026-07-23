@@ -1,6 +1,5 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faHouse } from '@fortawesome/free-solid-svg-icons'
 import Products from '../../data/products.json'
+import ProductCard from '../product_card/productCard';
 const Main = () => {
 
   return (
@@ -11,10 +10,7 @@ const Main = () => {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
       >
         {Products.map((product, key) => (
-          <div key={key}>
-            <div>{product.name}</div>
-            {product.type}
-            </div>
+          <ProductCard product={product} key={key} />
         ))}
       </div>
       </div>
