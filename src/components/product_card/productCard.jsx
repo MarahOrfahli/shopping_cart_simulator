@@ -1,6 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 const ProductCard = ({product}) => {
+
+    function formatName(str) {
+  return str
+    .split('_')
+    .map(word =>
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join(' ');
+}
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col">
       <div className="relative pb-[75%] bg-white-200 overflow-hidden">
@@ -14,7 +24,10 @@ const ProductCard = ({product}) => {
         <h4 className="text-lg font-semibold text-gray-900 mb-1 leading-tight lg:h-12">
             {product.name}
         </h4>
-        <p className="text-indigo-600 font-bold text-xl mb-4">$ {product.price.toFixed(2)}</p>
+        <div className="flex justify-between">
+            <p className="text-indigo-600 font-bold text-xl mb-4">$ {product.price.toFixed(2)}</p>
+            <span className="text-gray-400 font-bold italic">{formatName(product.type)}</span>
+            </div>
         
         <div className="mt-auto">
           <button
