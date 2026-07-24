@@ -1,8 +1,18 @@
 import { useSidebar } from "../../hooks/sidebarContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faXmark,
+  faArrowRight,
+  faShoppingCart
+} from "@fortawesome/free-solid-svg-icons";
+import ShoppingCard from "../shopping_cart_card/shoppingCartCard";
+import { useCart } from "../../hooks/cartContext";
+
+
 
 const Sidebar = () => {
+  const { cartItems, removeFromCart, updateQuantity } = useCart()
+  const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const { isOpened, toggleSidebar } = useSidebar();
   return (
     // <!-- Cart Sidebar -->
@@ -59,56 +69,31 @@ const Sidebar = () => {
                   {/* Cart Items Container */}
                   <div className="mt-8">
                     <div className="flow-root">
-                      {/* <ul role="list" className="-my-6 divide-y divide-gray-200">
-                        {cart.length === 0 ? (
+                      <ul
+                        role="list"
+                        className="-my-6 divide-y divide-gray-200"
+                      >
+                        {cartItems.length === 0 ? (
                           <li className="py-12 flex flex-col items-center justify-center text-center">
                             <div className="bg-gray-100 p-4 rounded-full mb-4 text-gray-400">
-                              <ShoppingBag className="w-10 h-10" />
+                              <FontAwesomeIcon
+                                icon={faShoppingCart}
+                                size="x"
+                                color="gray"
+                              />
                             </div>
-                            <p className="text-gray-500 font-medium">Your cart is empty.</p>
-                            <button 
-                              type="button" 
-                              onClick={onClose}
-                              className="mt-4 text-green-600 font-medium hover:text-green-500"
-                            >
-                              Continue Shopping &rarr;
-                            </button>
+                            <p className="text-gray-500 font-medium">
+                              Your cart is empty.
+                            </p>
                           </li>
                         ) : (
-                          cart.map((item) => (
-                            <li key={item.product.id} className="flex py-6">
-                              <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 bg-gray-50">
-                                <img src={item.product.image} alt={item.product.name} className="h-full w-full object-cover object-center" />
-                              </div>
-                              <div className="ml-4 flex flex-1 flex-col justify-between">
-                                <div>
-                                  <div className="flex justify-between text-base font-medium text-gray-900">
-                                    <h3 className="line-clamp-2 pr-4 leading-tight"><a href="#">{item.product.name}</a></h3>
-                                    <p className="ml-4 whitespace-nowrap">${(item.product.price * item.quantity).toFixed(2)}</p>
-                                  </div>
-                                  <p className="mt-1 text-sm text-gray-500">{item.product.color}</p>
-                                </div>
-                                <div className="flex flex-1 items-end justify-between text-sm">
-                                  <div className="flex items-center border border-gray-300 rounded-md">
-                                    <button onClick={() => updateQuantity(item.product.id, -1)} className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-l-md font-bold">-</button>
-                                    <span className="px-3 py-1 font-medium text-gray-900 border-x border-gray-300 min-w-[2rem] text-center">{item.quantity}</span>
-                                    <button onClick={() => updateQuantity(item.product.id, 1)} className="px-3 py-1 text-gray-600 hover:bg-gray-100 transition-colors rounded-r-md font-bold">+</button>
-                                  </div>
-                                  <div className="flex">
-                                    <button 
-                                      type="button" 
-                                      onClick={() => removeFromCart(item.product.id)} 
-                                      className="font-medium text-red-500 hover:text-red-600 flex items-center"
-                                    >
-                                      <Trash2 className="w-4 h-4 mr-1" /> Remove
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
+                          cartItems.map((item) => (
+                            <li key={item.id} className="flex py-6">
+                              <ShoppingCard key={item.id} item={item} updateQuantity={updateQuantity} removeFromCart={removeFromCart}/>
                             </li>
                           ))
                         )}
-                      </ul> */}
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -117,16 +102,15 @@ const Sidebar = () => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6 bg-gray-50">
                   <div className="flex justify-between text-base font-medium text-gray-900 mb-4">
                     <p>Subtotal</p>
-                    {/* <p>${subtotal.toFixed(2)}</p> */}
+                    <p>${subtotal.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500 mb-6">
                     Shipping and taxes calculated at checkout.
                   </p>
                   <div>
                     <button
-                      // onClick={onCheckout}
-                      // disabled={cart.length === 0}
-                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={cartItems.length === 0}
+                      className={`${cartItems.length !== 0 ? 'cursor-pointer': ''} flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       Checkout
                     </button>
@@ -137,7 +121,7 @@ const Sidebar = () => {
                       <button
                         type="button"
                         onClick={toggleSidebar}
-                        className="font-medium text-green-900 hover:text-green-800 cursor-pointer"
+                        className="font-medium ml-1 text-green-900 hover:text-green-800 cursor-pointer"
                       >
                         <span className="mr-1 text-xl">Continue Shopping</span>
                         <FontAwesomeIcon

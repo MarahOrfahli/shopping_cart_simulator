@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStore, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useSidebar } from "../../hooks/sidebarContext";
+import { useCart } from "../../hooks/cartContext";
 
 const Navbar = () => {
-  const { toggleSidebar} = useSidebar()
+  const { cartItems } = useCart()
+  const quantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
+  const { toggleSidebar } = useSidebar();
   return (
     <nav className="fixed w-full bg-white/80 backdrop-blur-md z-40 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,11 +28,11 @@ const Navbar = () => {
             >
               <FontAwesomeIcon icon={faShoppingCart} size="xl" color="green" />
               {/* <!-- Badge --> */}
+
               <span
-                id="cartBadge"
-                className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white opacity-0 transition-opacity duration-300"
+                className={`absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4 items-center justify-center rounded-full bg-green-600 text-[10px] font-bold text-white transition-opacity duration-300 ${quantity > 0 ? "opacity-100" : "opacity-0"}`}
               >
-                0
+                {quantity}
               </span>
             </button>
           </div>
