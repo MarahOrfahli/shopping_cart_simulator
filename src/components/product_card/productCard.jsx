@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-// import { useProducts } from "../../hooks/productContext";
 const ProductCard = ({ product, addToCart }) => {
-  // const { addToSidebar } = useProducts()
   function formatName(str) {
     return str
       .split("_")

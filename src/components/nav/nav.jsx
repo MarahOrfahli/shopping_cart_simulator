@@ -22,7 +22,6 @@ const Navbar = () => {
           {/* <!-- Cart Toggle Button --> */}
           <div className="flex items-center space-x-4 md:space-x-6">
             <button
-              id="cartToggleBtn"
               onClick={toggleSidebar}
               className="relative text-gray-500 hover:text-brand-600 transition-colors p-1 cursor-pointer"
             >
