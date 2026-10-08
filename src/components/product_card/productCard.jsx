@@ -12,7 +12,7 @@ const ProductCard = ({ product, addToCart }) => {
     <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
       <div className="relative pb-[75%] bg-white-200 overflow-hidden m-4">
         <img
-          src={"src/assets/products/product_" + product.type + ".jpg"}
+          src={"./src/assets/products/product_" + product.type + ".jpg"}
           alt={product.name}
           className="absolute inset-0 w-full h-full object-contain"
         />
