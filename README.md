@@ -8,7 +8,7 @@ A learning and portfolio project that simulates browsing products and managing a
 
 ## Screenshot
 
-![Screenshot](./screenshots/home.png)
+![Screenshot](./screenshots/Home.png)
 
 ## Features
 
