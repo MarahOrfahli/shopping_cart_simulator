@@ -6,7 +6,7 @@ const ShoppingCard = ({ item, removeFromCart, updateQuantity }) => {
     <>
       <div className="p-2 h-24 w-24 shrink-0 overflow-hidden rounded-md border border-gray-200 bg-white">
         <img
-          src={"src/assets/products/product_" + item.type + ".jpg"}
+          src={"./images/product_" + item.type + ".jpg"}
           alt={item.name}
           className="h-full w-full object-contain"
         />
