@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSidebar } from "../../hooks/sidebarContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,15 +8,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ShoppingCard from "../shopping_cart_card/shoppingCartCard";
 import { useCart } from "../../hooks/cartContext";
+import CheckoutModal from "../checkout_modal/CheckoutModal";
 
 
-
-const Sidebar = () => {
-  const { cartItems, removeFromCart, updateQuantity } = useCart()
+const Sidebar = ({ onOrderComplete }) => {
+  const { cartItems, removeFromCart, updateQuantity, clearCart } = useCart()
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const { isOpened, toggleSidebar } = useSidebar();
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  const confirmOrder = () => {
+    clearCart();
+    setIsCheckoutOpen(false);
+    toggleSidebar();
+    onOrderComplete();
+  };
+
   return (
-    // <!-- Cart Sidebar -->
+    <>
+    {/* Cart Sidebar */}
     <aside
       className={`relative z-50 ${isOpened ? "pointer-events-auto" : "pointer-events-none"}`}
       aria-labelledby="slide-over-title"
@@ -109,7 +120,9 @@ const Sidebar = () => {
                   </p>
                   <div>
                     <button
+                      type="button"
                       disabled={cartItems.length === 0}
+                      onClick={() => setIsCheckoutOpen(true)}
                       className={`${cartItems.length !== 0 ? 'cursor-pointer': ''} flex w-full items-center justify-center rounded-md border border-transparent bg-green-900 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       Checkout
@@ -139,6 +152,14 @@ const Sidebar = () => {
         </div>
       </div>
     </aside>
+    {isCheckoutOpen && (
+      <CheckoutModal
+        cartItems={cartItems}
+        onConfirm={confirmOrder}
+        onCancel={() => setIsCheckoutOpen(false)}
+      />
+    )}
+    </>
   );
 };
 
