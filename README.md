@@ -4,7 +4,7 @@ A learning and portfolio project that simulates browsing products and managing a
 
 ## Live Demo
 
-[your-vercel-link](https://your-vercel-link.vercel.app)
+[Shopping Cart Simulator Live Code ](https://marahorfahli.github.io/shopping_cart_simulator/)
 
 ## Screenshot
 
