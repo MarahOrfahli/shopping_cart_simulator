@@ -6,6 +6,7 @@ A learning and portfolio project that simulates browsing products and managing a
 
 [Shopping Cart Simulator Live Code ](https://marahorfahli.github.io/shopping_cart_simulator/)
 
+
 ## Screenshot
 
 ![Screenshot](./screenshots/Home.png)
